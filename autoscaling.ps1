@@ -233,7 +233,7 @@ if (!$WebhookURIAutoVar) {
 	$Webhook = New-AzAutomationWebhook -Name $WebhookName -RunbookName $RunbookName -IsEnabled $true -ExpiryTime (Get-Date).AddYears(5) -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Force -Verbose
 	Write-Output "Automation Account Webhook is created with name: $WebhookName"
 	$WebhookURI = $Webhook.WebhookURI
-	New-AzAutomationVariable -Name $WebhookURIAutoVarName -Encrypted $true -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Value $WebhookURI
+	New-AzAutomationVariable -Name $WebhookURIAutoVarName -Encrypted $false -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Value $WebhookURI
 	Write-Output "Webhook URI (encrypted) stored in Automation Acccount variable with name: $WebhookURIAutoVarName"
 	$WebhookURIAutoVar = Get-AzAutomationVariable -Name $WebhookURIAutoVarName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ErrorAction SilentlyContinue
 }
